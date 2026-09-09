@@ -1,4 +1,5 @@
-# CS-Tech-Homelab
+# CS-Tech-Homelab<img width="1400" height="700" alt="ChatGPT Image Sep 9, 2026, 05_41_15 AM" src="https://github.com/user-attachments/assets/1af31d44-bfe3-42c3-958e-85de669ee98d" />
+
 <h2>Project Overview</h2>
 I made this project to simulate the IT infrastructure of an organization using virtual machines and Microsoft technologies. Throughout this project you will see my process of building and configuring a osTicket System, Active Directory, Virtual Machines one a Client user and the other being a Domain Server.
 
@@ -24,6 +25,7 @@ Rather than simply configuring a working environment, this lab focuses on buildi
 🔐 Security
 
 # Building the Infrastructure
+This is going to be Phase 1 of this project. Its focal points are going to be showing how I created and configured different tools and environments using multiple technologies from the list above that I will later use in Phase 2 of this project. 
 <details>
 <summary>🖥️ 1.1 Azure & Virtual Machines</summary>
 
@@ -107,62 +109,176 @@ Finally after creating all of the users I had to go to the client server and mak
 *<h2>That Wraps up the building and configuration of my Active Directory<h2>*
 </details>
 
-# Creating and Troubleshooting Tickets
-<details>
+# Creating, Troubleshooting, and Fixing Tickets
+This section of the project is Phase 2 and is going to be focused on how I used all the tools and resources that I built and configured in the Phase 1 of the project to create, simulate, troubleshoot, and diagnose real life IT help desk tickets
+ <details>
 <summary>🏢 2.1 Active Directory</summary>
 
-### Scenario
-User reports they cannot log into their account.
+### Ticket 1
+Group Policy Settings Not Applying
+## <img width="962" height="501" alt="GroupPolicySettingsTicket" src="https://github.com/user-attachments/assets/8137e22a-21c6-40e3-8d74-f4eb1da735df" />
+This first ticket is simulating when an user is experiencing issues with the latest company group policy not applying for some reasoin.
 
-### Troubleshooting
-1. Checked account status
-2. Confirmed account was locked
-3. Unlocked account
-4. Tested authentication
+## <img width="751" height="288" alt="GroupPolicySettingsCreratingGPO" src="https://github.com/user-attachments/assets/5b1a0d24-80a3-4ff7-afd8-e446decb3887" />
+So this is me creating the group policy that we are going to use to simulate the issue this ticket is showing us.
 
-### Evidence
-- Screenshot before
-- PowerShell commands
-- Screenshot after
+## <img width="695" height="1089" alt="GroupPolicySettingsShowingGPOWorking" src="https://github.com/user-attachments/assets/167397a7-6d51-4f12-aa60-910c94f130b0" />
+This is an image showing me use Microsoft PowerShell to run gpresult /r which will show us whatever group policies are being applied to this user. As you may have noticed we have logged into the users account as seen by the it saying this data is for Lily.Anderson. I am sharing this image to show how the group policy should be working before we go in to simulate the problem essentially making it not work.
 
+## <img width="752" height="573" alt="GroupPolicySettingsRemovingAuthenticatedUsersFromFilter" src="https://github.com/user-attachments/assets/cea913b1-170e-495b-8ea4-b4d0becdb893" />
+So here I am creating the issue or breaking the group policy I guess you could say. Basically I'm taking all the users that were authenticated for this group policy and deleting them off of it and replacing them with another group.
+## <img width="731" height="1192" alt="GroupPolicySettingsSimulatedPolicyNotShowingUp" src="https://github.com/user-attachments/assets/09212545-a530-4cf7-ba60-ff4cef7f0c9b" />
+This is where I am showing that on the  users computer the group policy that we were seeing before is no longer showing up.
+
+## <img width="752" height="572" alt="GroupPolicySettingsFixingIssue" src="https://github.com/user-attachments/assets/a6da4f28-e073-4293-a057-6ebd8dad541a" />
+This is simulating me going to the group policy manager and looking to see if there is anything I can find that is wrong that could be causing the issue, there obviously was one seeing how we created it but I identify the issue and then fix it by adding the authenticated users back into the security filter of this group policy.
+
+## <img width="807" height="1185" alt="GroupPolicySettingsShowingFixWorked" src="https://github.com/user-attachments/assets/e2a3f75c-e309-4164-a730-87bee8f0e37a" />
+This is me going back to the users account and running gpupdate /force to force the computer to update its group policies and then once again running gpresult /r to check if the group policy is now showing up on this account.
+### Ticket 2
+New Employee Account can't Authenticate
+## <img width="965" height="495" alt="NewEmpoyleeAccountCantAuthenticateToDomainTicket" src="https://github.com/user-attachments/assets/648f1475-b9e2-415f-a89d-a4da102c3eba" />
+This ticket is showing how a new employee is unable to authenticate to the domain. 
+## <img width="535" height="217" alt="NewEmployeeCantAuthenticateConfirmingLoginB4Simulating" src="https://github.com/user-attachments/assets/0a3563e2-b5f2-40d3-ab01-35aa84162cd9" />
+Here is me confirming that I am logged into the users account before we create the scenario of the ticket showing that it is working and able to login.
+
+## <img width="554" height="145" alt="NewEmployeeCantAuthenticateAccountLocked" src="https://github.com/user-attachments/assets/c6ff59c7-d8b7-4616-89e6-44d7f0b507b1" />
+This is showing the account is locked out now since I am simulating these tickets I know that it says its because of the amount of login attempts but I am doing that to simulate the account being locked where the root cause was the new employee's AD account was not in a valid state for domain authentication.
+
+## <img width="1090" height="589" alt="NewEmployeeCantAuthenticateShowingWorkstationToDomainConnection" src="https://github.com/user-attachments/assets/6f6d8d64-f2c3-44b9-b3ec-a575bb8791e9" />
+This is actually showing how on another account separate from the users account the workstation actually does have a connection with the domain. Meaning the issue has got to be something with the account authentication.
+
+## <img width="412" height="546" alt="NewEmployeeCantAuthenticateUnlockingAccount" src="https://github.com/user-attachments/assets/ee8ac03f-90ae-4a8e-9ddd-5d7fc40d559c" />
+This is showing the unlocking of the account which is simulating the account being locked and that being the reason the authentication was failing. So here I am unlocking the account to see if that fixes the issue/
+
+## <img width="1204" height="221" alt="NewEmployeeCantAuthenticateLoggedBackIn" src="https://github.com/user-attachments/assets/dcfb8d38-fbf3-41e6-9690-2686a86952a2" />
+Here we see the users account is logged back in which means that it was able to authenticate with the domain server and now log in.
+
+### Ticket 3
+User cant Access Department FileShare
+
+## <img width="956" height="499" alt="UserCantAccessDeptFileShareTicket" src="https://github.com/user-attachments/assets/4b8e997d-f67c-44dc-ba67-a2500c8c1aae" />
+Here is a ticket that I created to be simulating when an user can't access department file shares. 
+
+## <img width="1122" height="633" alt="UserCantAccessDeptFileShareWorkingState" src="https://github.com/user-attachments/assets/4f3d49ce-76c7-4ddf-ad31-ca99f8e1e499" />
+This photo shows what it looks like when the user is able to access the department file shares before we recreate the issue.
+
+## <img width="407" height="357" alt="UserCantAccessDeptFileShareRemovingFromAccountingSG" src="https://github.com/user-attachments/assets/c08366a0-afb2-494a-acf2-b66106bedcd6" />
+So to recreate the issue I went into the Active Directory and removing this users account from the accounting group which will make it so they can't access the departments shared files since they are no longer apart of that department.
+
+## <img width="518" height="191" alt="UserCantAccessDeptFileShareProof" src="https://github.com/user-attachments/assets/caefb4fc-72cf-4966-95a0-26322f375c4e" />
+Here Is me showing when I went back into the users account and tried to access that same department file. As you can see the access was denied.
+
+## <img width="401" height="451" alt="UserCantAccessDeptFileShareAddingThemToDept" src="https://github.com/user-attachments/assets/4ec4198c-05ab-44c7-9cb6-7e88bc93354e" />
+Here is how I went about the problem which was going into the Active directory and finding the users account and then adding them to the accounting department.
+
+## <img width="1122" height="633" alt="UserCantAccessDeptFileShareWorkingState" src="https://github.com/user-attachments/assets/ce09db58-693e-466c-913a-d06a831bc111" />
+Finally this is after I went through and added the user back into the accounting group and then checking to see if the account can now access those file shares and they were able to again, meaning the issue was fixed.
+
+### Ticket 4
+Password is expired and account is locked
+
+## <img width="985" height="567" alt="LockedAccountTicket" src="https://github.com/user-attachments/assets/f727558c-c325-4132-89f6-4941685d85ce" />
+This is a ticket simulating an account that has been locked out and can't get back in.
+
+## <img width="556" height="150" alt="LockedAccountConfirmation" src="https://github.com/user-attachments/assets/8cf2aecf-a46e-4898-a14a-e8960e80eef2" />
+So this is showing me going and confirming that the account is actually locked out and unable to log in.
+
+## <img width="407" height="540" alt="LockedAccountOnAD" src="https://github.com/user-attachments/assets/c0ac9526-5892-4ba3-91a5-cd55872403e3" />
+This is showing me going into the Active Directory and finding the users account and seeing that the account has been locked. Now before I just unlock the account I would make sure to confirm the users identity and make sure to follow all of the security protocols in place at that company. Wanted to make sure I clarified that since I cant really do that since I created this. 
+
+## <img width="1198" height="226" alt="AccountLockedSolved-LoggedIn" src="https://github.com/user-attachments/assets/974c4b36-1bbb-43c0-a1ee-4f3622271c4e" />
+Here is the account being logged back into and showing that they are indeed on the correct account and are no longer locked out.
 </details>
 
 <details>
 <summary>🌐2.2 Networking & Azure Networking</summary>
 
-### Scenario
-User reports they cannot log into their account.
+### Ticket 1
+Computer Receiving Incorrect DHCP Configuration 
+## <img width="964" height="488" alt="ComputerReceivingWrongDHCPTicket" src="https://github.com/user-attachments/assets/051636f2-34ac-4479-8817-32d5fe46aea8" />
+First thing this is showing is a ticket showing a user having DHCP issues which stands for Domain Host Configuration Protocol. 
 
-### Troubleshooting
-1. Checked account status
-2. Confirmed account was locked
-3. Unlocked account
-4. Tested authentication
+## <img width="730" height="720" alt="ComputerReceivingWrongDHCPWorkingConfig" src="https://github.com/user-attachments/assets/f0e716eb-60bd-4fd8-916c-eee57de82969" />
+First thing I wanted to show was what the proper configuration looks like before I go and recreate the issue.
 
-### Evidence
-- Screenshot before
-- PowerShell commands
-- Screenshot after
+## <img width="718" height="994" alt="ComputerReceivingWrongDHCPChangingDNSToSimulateDHCPNotWorking" src="https://github.com/user-attachments/assets/56470bcc-e9d1-4595-a019-26b49604cba2" />
+Next thing here is me changing the DNS to simulate the issue on the ticket because what this essentially does is it makes it so the DHCP will be trying to access the original DNS and it wont be able to reach it because we changed it. This also shows me pinging 8.8.8.8 and getting a response but when I run nslookup google.com the DNS request times out.
 
+## <img width="729" height="715" alt="ComputerReceivingWrongDHCPFixingToShowReconnectionToCorrectDHCP" src="https://github.com/user-attachments/assets/9c604667-5e01-490d-97aa-ea4bea7a1ef4" />
+This image is showing how I went and fixed the issue by resetting the DNS to the correct one an then running ipconfig /renew.
+
+## <img width="633" height="713" alt="ComputerReceivingWrongDHCPEstablishingConnections" src="https://github.com/user-attachments/assets/06c34a84-df33-4604-954d-defe81395b25" />
+This is where I run a series of PowerShell commands to check and establish connections to multiple things to make sure the DHCP and DNS are both working.
+
+### Ticket 2
+VPN Connects but Internal Resources are Inaccessible
+## <img width="964" height="431" alt="VPNConnectsButInternalsDontTicket" src="https://github.com/user-attachments/assets/d43d5042-b0e1-4e76-8e76-3123cac84774" />
+This is a recreation of a ticket simulating a VPN issue where the VPN connects but the internal resources are unable to be used or accessed.
+
+## <img width="1422" height="575" alt="VPNConnectsCreatingTheConnectionError" src="https://github.com/user-attachments/assets/3e3d2449-f45e-415b-b8ad-df6108addea6" />
+This is how I simulated a scenario where a VPN connection provides Internet access but internal network resources are inaccessible. Seeing how I am using a virtual machine I couldn't figure out a way to actually create a real VPN so i focused on recreating the same result using a different method for the purpose of the lab.
+
+## <img width="608" height="623" alt="VPNConnectsSimulatingVPN InternetConnection" src="https://github.com/user-attachments/assets/0ad03160-883e-487b-a15f-5cd604f17de2" />
+So basically the this is showing that the connection to the internal server is working but  they're unable to establish the connection required to access the internal file share. But that the connection is working showing that I can ping an external Internet Address.
+
+## <img width="685" height="294" alt="VPNConnectsConnectionComingBackTrue" src="https://github.com/user-attachments/assets/99a1edc0-633a-4822-9119-f8aa6e9697ff" />
+This where I'm showing how the connection is now coming back true showing the issue is now fixed showing that we now have access to the internal server and therefore access to the internal resources.
+
+### Ticket 3
+Unable to Connect to Office WIFI
+## <img width="964" height="437" alt="osTicket-UnabletoConnecttoNetwork" src="https://github.com/user-attachments/assets/3586a44d-c948-4b79-b6b0-bbc8ea22ad1b" />
+Here is a very common ticket that comes up a lot for a lot of a different reasons an user is unable to connect to the network.
+
+## <img width="663" height="722" alt="NoNetworkDiagnosticPowerShell" src="https://github.com/user-attachments/assets/b2899b59-5e95-4d80-a138-ea3f4c8134de" />
+So this me running ipconfig /all to see the ip configuration to check for anything abnormal or out of place. After not finding anything I ping 8.8.8.8 to test network connection and it comes back with a response meaning that the network is in fact coneected. I finally run ping google.com and it comes back could not find host name meaning that the issue is probably actually with the DNS.
+
+## <img width="531" height="475" alt="NoNetworkTestingSolutionComplete" src="https://github.com/user-attachments/assets/509da90e-290a-4f3f-ab5b-bea4781e46b4" />
+Finally here is where I go and flush the DNS cache and then retry pinging google.com which this time we get a response. This mean the issue is fixed and what the user thought was a network issue was actually an issue with the DNS so they weren't able to reach domain names when they searched them up.
 </details>
 
 <details>
 <summary>💻 2.3 Endpoint & Desktop Support</summary>
 
-### Scenario
-User reports they cannot log into their account.
+### Ticket 1
+Outlook is not receiving new messages
+## <img width="964" height="474" alt="OutlookNotReceivingMessages" src="https://github.com/user-attachments/assets/c40009a6-0306-4233-89ab-6b9509b76f82" />
+This is a ticket simulating an user not getting any new messages on their outlook.
 
-### Troubleshooting
-1. Checked account status
-2. Confirmed account was locked
-3. Unlocked account
-4. Tested authentication
+## <img width="626" height="512" alt="OutlookNotReceivingMessagesTestEmailPreRule" src="https://github.com/user-attachments/assets/9a63b74d-e346-440e-a71d-22b8032f81d8" />
+So this is the outlook I created for this user to simulate them getting messages before we create a rule that will make it look like they aren't receiving any messages. So here is them receiving messages.
 
-### Evidence
-- Screenshot before
-- PowerShell commands
-- Screenshot after
+## <img width="1606" height="380" alt="OutlookNotReceivingMessagesTestEmailSentFromITpro" src="https://github.com/user-attachments/assets/51048ea0-d529-4a7b-83ed-f60f0424ed61" />
+Here is me sending a test email or message to see if they are still receiving messages.
 
+## <img width="628" height="384" alt="OutlookNotReceivingMessagesDidntReceiveTestEmail" src="https://github.com/user-attachments/assets/115735b2-e6bc-4107-8722-853724087204" />
+This is showing after I sent that email it is nowhere to be seen and has not been received by the users outlook account.
+
+## <img width="1279" height="585" alt="OutlookNotReceivingMessagesFindingTheRule" src="https://github.com/user-attachments/assets/c39c4796-21a3-4f48-854c-1b5f06a2634f" />
+I then go and look into their mail setting and then go look into the mail rules and find a rule that is sending all mail received to go straight into the spam folder. That explains why it looked why they thought the weren't getting any new messages.
+
+## <img width="2247" height="402" alt="OutlookNotReceivingMessagesTestEmailAfterRuleDeletion" src="https://github.com/user-attachments/assets/05efc061-fc02-4acd-b878-aecca55ee67a" />
+This is finally after we deleted the rule that was in place and you can now see that the test emails we have sent are now showing up in the correct folder.
+
+### Ticket 2
+Printer not appearing on workstation
+## <img width="951" height="550" alt="PrinterNotConnectedTicket" src="https://github.com/user-attachments/assets/99895e59-3c49-487e-9d65-f2ccfb8348ba" />
+This is A ticket that was created to simulate a printer not being connected to the network.
+
+## <img width="1211" height="340" alt="PrinterNotConnectedConfirmingError" src="https://github.com/user-attachments/assets/f1bea76a-24d3-4949-a6d9-082e1aeff094" />
+So this was me going in and confirming that the printer was actually not connected and it wasn't. In order to simulate this I actually had to create a fake printer so I did that and since it was a fake printer that made sure the connection would fail.
+
+## <img width="454" height="523" alt="PrinterNotConnectedPrintersIPaddress" src="https://github.com/user-attachments/assets/7b8bbc74-d542-4ffa-8803-603ce07823de" />
+This is an image showing me going into the setting of the printers and then finding the one I was looking for and then goin into its properties and checking to see what the devices IP Address was.
+
+## <img width="592" height="371" alt="PrinterNotConnectedPingedIPaddress" src="https://github.com/user-attachments/assets/8a3ac337-aed8-4c19-b17d-9fa1fe30e3ff" />
+This is why we needed that IP Address because we are now pinging it to see if we can get a response which we didn't. This means that we are unable to communicate with the printer over the local network.
+
+## <img width="611" height="735" alt="PrinterNotConnectedPinging8 8 8 8 google com" src="https://github.com/user-attachments/assets/05bb0f95-4749-4682-bd01-53bc6e24a26b" />
+We then ping 8.8.8.8 and google.com to show that we do have internet access and also that our DNS is working properly. This helps give us more information to make sure that certain things are still working and not the issue, such as that the IP connectivity and DNS resolution are both working.
+
+## <img width="741" height="713" alt="PrinterNotConnectedipconfigall" src="https://github.com/user-attachments/assets/47304033-b808-4036-a19b-c68b417c39e1" />
+Finally to get a full picture of everything I ran ipconfig /all to make sure everything was working properly and I didn't find anything wrong which leads me to conclude that the printer is not working due to some kind of printer side connectivity or hardware issue.
 </details>
 
 
