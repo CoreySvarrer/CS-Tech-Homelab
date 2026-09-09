@@ -114,7 +114,7 @@ This section of the project is Phase 2 and is going to be focused on how I used 
  <details>
 <summary>🏢 2.1 Active Directory</summary>
 
-### Ticket 1
+### Ticket I
 Group Policy Settings Not Applying
 ## <img width="962" height="501" alt="GroupPolicySettingsTicket" src="https://github.com/user-attachments/assets/8137e22a-21c6-40e3-8d74-f4eb1da735df" />
 This first ticket is simulating when an user is experiencing issues with the latest company group policy not applying for some reasoin.
@@ -135,7 +135,7 @@ This is simulating me going to the group policy manager and looking to see if th
 
 ## <img width="807" height="1185" alt="GroupPolicySettingsShowingFixWorked" src="https://github.com/user-attachments/assets/e2a3f75c-e309-4164-a730-87bee8f0e37a" />
 This is me going back to the users account and running gpupdate /force to force the computer to update its group policies and then once again running gpresult /r to check if the group policy is now showing up on this account.
-### Ticket 2
+### Ticket II
 New Employee Account can't Authenticate
 ## <img width="965" height="495" alt="NewEmpoyleeAccountCantAuthenticateToDomainTicket" src="https://github.com/user-attachments/assets/648f1475-b9e2-415f-a89d-a4da102c3eba" />
 This ticket is showing how a new employee is unable to authenticate to the domain. 
@@ -154,7 +154,7 @@ This is showing the unlocking of the account which is simulating the account bei
 ## <img width="1204" height="221" alt="NewEmployeeCantAuthenticateLoggedBackIn" src="https://github.com/user-attachments/assets/dcfb8d38-fbf3-41e6-9690-2686a86952a2" />
 Here we see the users account is logged back in which means that it was able to authenticate with the domain server and now log in.
 
-### Ticket 3
+### Ticket III
 User cant Access Department FileShare
 
 ## <img width="956" height="499" alt="UserCantAccessDeptFileShareTicket" src="https://github.com/user-attachments/assets/4b8e997d-f67c-44dc-ba67-a2500c8c1aae" />
@@ -175,7 +175,7 @@ Here is how I went about the problem which was going into the Active directory a
 ## <img width="1122" height="633" alt="UserCantAccessDeptFileShareWorkingState" src="https://github.com/user-attachments/assets/ce09db58-693e-466c-913a-d06a831bc111" />
 Finally this is after I went through and added the user back into the accounting group and then checking to see if the account can now access those file shares and they were able to again, meaning the issue was fixed.
 
-### Ticket 4
+### Ticket IV
 Password is expired and account is locked
 
 ## <img width="985" height="567" alt="LockedAccountTicket" src="https://github.com/user-attachments/assets/f727558c-c325-4132-89f6-4941685d85ce" />
@@ -194,7 +194,7 @@ Here is the account being logged back into and showing that they are indeed on t
 <details>
 <summary>🌐2.2 Networking & Azure Networking</summary>
 
-### Ticket 1
+### Ticket I
 Computer Receiving Incorrect DHCP Configuration 
 ## <img width="964" height="488" alt="ComputerReceivingWrongDHCPTicket" src="https://github.com/user-attachments/assets/051636f2-34ac-4479-8817-32d5fe46aea8" />
 First thing this is showing is a ticket showing a user having DHCP issues which stands for Domain Host Configuration Protocol. 
@@ -211,7 +211,7 @@ This image is showing how I went and fixed the issue by resetting the DNS to the
 ## <img width="633" height="713" alt="ComputerReceivingWrongDHCPEstablishingConnections" src="https://github.com/user-attachments/assets/06c34a84-df33-4604-954d-defe81395b25" />
 This is where I run a series of PowerShell commands to check and establish connections to multiple things to make sure the DHCP and DNS are both working.
 
-### Ticket 2
+### Ticket II
 VPN Connects but Internal Resources are Inaccessible
 ## <img width="964" height="431" alt="VPNConnectsButInternalsDontTicket" src="https://github.com/user-attachments/assets/d43d5042-b0e1-4e76-8e76-3123cac84774" />
 This is a recreation of a ticket simulating a VPN issue where the VPN connects but the internal resources are unable to be used or accessed.
@@ -225,7 +225,7 @@ So basically the this is showing that the connection to the internal server is w
 ## <img width="685" height="294" alt="VPNConnectsConnectionComingBackTrue" src="https://github.com/user-attachments/assets/99a1edc0-633a-4822-9119-f8aa6e9697ff" />
 This where I'm showing how the connection is now coming back true showing the issue is now fixed showing that we now have access to the internal server and therefore access to the internal resources.
 
-### Ticket 3
+### Ticket III
 Unable to Connect to Office WIFI
 ## <img width="964" height="437" alt="osTicket-UnabletoConnecttoNetwork" src="https://github.com/user-attachments/assets/3586a44d-c948-4b79-b6b0-bbc8ea22ad1b" />
 Here is a very common ticket that comes up a lot for a lot of a different reasons an user is unable to connect to the network.
@@ -240,7 +240,7 @@ Finally here is where I go and flush the DNS cache and then retry pinging google
 <details>
 <summary>💻 2.3 Endpoint & Desktop Support</summary>
 
-### Ticket 1
+### Ticket I
 Outlook is not receiving new messages
 ## <img width="964" height="474" alt="OutlookNotReceivingMessages" src="https://github.com/user-attachments/assets/c40009a6-0306-4233-89ab-6b9509b76f82" />
 This is a ticket simulating an user not getting any new messages on their outlook.
@@ -260,7 +260,7 @@ I then go and look into their mail setting and then go look into the mail rules 
 ## <img width="2247" height="402" alt="OutlookNotReceivingMessagesTestEmailAfterRuleDeletion" src="https://github.com/user-attachments/assets/05efc061-fc02-4acd-b878-aecca55ee67a" />
 This is finally after we deleted the rule that was in place and you can now see that the test emails we have sent are now showing up in the correct folder.
 
-### Ticket 2
+### Ticket II
 Printer not appearing on workstation
 ## <img width="951" height="550" alt="PrinterNotConnectedTicket" src="https://github.com/user-attachments/assets/99895e59-3c49-487e-9d65-f2ccfb8348ba" />
 This is A ticket that was created to simulate a printer not being connected to the network.
